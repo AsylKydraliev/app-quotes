@@ -7,7 +7,7 @@ import { LinksComponent } from './links/links.component';
 const routes: Routes = [
   {path: '', component: LinksComponent, children: [
       {path: '', component: QuotesComponent},
-      {path: ':quotes/:category', component: QuotesComponent},
+      {path: 'quotes/:category', component: QuotesComponent},
     ]},
   {path: ':id/edit', component: AddQuotesComponent},
   {path: 'add-quotes', component: AddQuotesComponent},

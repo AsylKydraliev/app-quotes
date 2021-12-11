@@ -4,7 +4,7 @@
       <p>{{ quote.text }}</p>
       <p>{{ quote.author }}</p>
       <button type="submit" [routerLink]="[quoteId, 'edit']">Edit</button>
-      <button (click)="onDelete()">Delete</button>
+      <button (click)="onDeleteQuote(quoteId)">Delete</button>
     </div>
   </div>
 </div>

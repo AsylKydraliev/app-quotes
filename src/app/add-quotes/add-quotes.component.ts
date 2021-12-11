@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Quote } from '../shared/quotes.model';
@@ -10,7 +10,6 @@ import { Quote } from '../shared/quotes.model';
 })
 export class AddQuotesComponent implements OnInit {
   quote!: Quote;
-  @Input() quotes!: Quote[];
   category = '';
   author = '';
   text = '';

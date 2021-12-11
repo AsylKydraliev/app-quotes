@@ -50,21 +50,21 @@ export class QuotesComponent implements OnInit {
           .subscribe(quotes =>{
             this.quotes = [];
             this.quotes = quotes;
+          });
+      }
+    });
 
+    this.route.params.subscribe((params: Params) => {
+      if (params['id']){this.quoteId  = params['id'];
+        this.http.get<Quote>(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`)
+          .subscribe(result => {
+            this.quote = result;
           });
       }
     });
   }
 
-
-
-onDelete() {
-    this.route.params.subscribe((params: Params) => {
-      if (params['id']){this.quoteId  = params['id'];
-        this.http.delete(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`)
-          .subscribe();
-      }
-    });
-    void this.router.navigate(['/']);
+  onDeleteQuote(id: string){
+    this.http.delete(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${id}.json`).subscribe();
   }
 }
