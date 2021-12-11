@@ -9,6 +9,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LinksComponent } from './links/links.component';
+import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LinksComponent } from './links/links.component';
     QuotesComponent,
     AddQuotesComponent,
     ToolbarComponent,
-    LinksComponent
+    LinksComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

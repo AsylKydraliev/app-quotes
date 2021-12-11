@@ -16,21 +16,7 @@ export class QuotesComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.http.get<{[id: string]: Quote}>
-    ('https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json')
-      .pipe(map(result => {
-        if(result === null) {
-          return [];
-        }
-        return Object.keys(result).map(id => {
-          const quote = result[id];
-          return new Quote(id, quote.category, quote.text, quote.author);
-        });
-      }))
-      .subscribe(quotes =>{
-        this.quotes = [];
-        this.quotes = quotes;
-      });
+    this.getQuotes();
 
     this.route.params.subscribe((params: Params) => {
       if (params['category']){this.category  = params['category']
@@ -53,7 +39,28 @@ export class QuotesComponent implements OnInit {
     });
   }
 
+  getQuotes(){
+    this.http.get<{[id: string]: Quote}>
+    ('https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json')
+      .pipe(map(result => {
+        if(result === null) {
+          return [];
+        }
+        return Object.keys(result).map(id => {
+          const quote = result[id];
+          return new Quote(id, quote.category, quote.text, quote.author);
+        });
+      }))
+      .subscribe(quotes =>{
+        this.quotes = [];
+        this.quotes = quotes;
+      });
+  }
+
   onDeleteQuote(id: string){
     this.http.delete(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${id}.json`).subscribe();
+    setTimeout(()=>{
+      this.getQuotes();
+    },200);
   }
 }
