@@ -1,11 +1,8 @@
-<div class="container">
-  <div class="quotes" >
-    <div class="content" *ngFor="let quote of quotes">
-      <p>{{ quote.text }}</p>
-      <p>{{ quote.author }}</p>
-      <button type="submit" [routerLink]="[quoteId, 'edit']">Edit</button>
-      <button (click)="onDeleteQuote(quoteId)">Delete</button>
-    </div>
-  </div>
+<div class="content" *ngFor="let quote of quotes">
+  <p>{{ quote.text }}</p>
+  <p>{{ quote.author }}</p>
+  <button type="submit" [routerLink]="[quote.id, 'edit']">Edit</button>&nbsp;
+  <button type="submit" (click)="onDeleteQuote(quote.id)">Delete</button>
 </div>
+
 

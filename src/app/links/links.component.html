@@ -1,25 +1,28 @@
-<div class="sidebar">
-  <ul>
-    <li>
-      <a routerLink="/">All</a>
-    </li>
-    <li>
-      <a routerLink="/quotes/star-wars">Star Wars</a>
-    </li>
-    <li>
-      <a routerLink="/quotes/famous-people">Famous people</a>
-    </li>
-    <li>
-      <a routerLink="/quotes/saying">Saying</a>
-    </li>
-    <li>
-      <a routerLink="/quotes/humour">Humour</a>
-    </li>
-    <li>
-      <a routerLink="/quotes/motivational">Motivational</a>
-    </li>
-  </ul>
-</div>
-<div>
-  <router-outlet></router-outlet>
+<div class="container">
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a routerLink="/">All</a>
+      </li>
+      <li>
+        <a routerLink="/quotes/star-wars">Star Wars</a>
+      </li>
+      <li>
+        <a routerLink="/quotes/famous-people">Famous people</a>
+      </li>
+      <li>
+        <a routerLink="/quotes/saying">Saying</a>
+      </li>
+      <li>
+        <a routerLink="/quotes/humour">Humour</a>
+      </li>
+      <li>
+        <a routerLink="/quotes/motivational">Motivational</a>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

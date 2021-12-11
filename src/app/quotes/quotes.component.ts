@@ -10,7 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./quotes.component.css']
 })
 export class QuotesComponent implements OnInit {
-  quotes!: Quote[];
+  quotes: Quote[] | null = null;
   quote!: Quote;
   quoteId!: string;
   category!: string;
@@ -50,15 +50,6 @@ export class QuotesComponent implements OnInit {
           .subscribe(quotes =>{
             this.quotes = [];
             this.quotes = quotes;
-          });
-      }
-    });
-
-    this.route.params.subscribe((params: Params) => {
-      if (params['id']){this.quoteId  = params['id'];
-        this.http.get<Quote>(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`)
-          .subscribe(result => {
-            this.quote = result;
           });
       }
     });
