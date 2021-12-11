@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a (click)="getQuotes()">All</a>
+      </li>
+      <li *ngFor="let quote of quotes">
+        <a [routerLink]="['quotes', quote.id]">{{ quote.category }}</a>
+      </li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>

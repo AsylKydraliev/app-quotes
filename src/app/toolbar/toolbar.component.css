@@ -1,0 +1,39 @@
+.navbar{
+  background: #000;
+  width: 100%;
+  height: auto;
+  color: #fff;
+  text-align: center;
+}
+
+.logo{
+  font-size: 35px;
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h1{
+  margin: 0;
+}
+
+.list{
+  padding: 20px;
+  display: inline-block;
+}
+
+.link{
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+  padding: 16px;
+}
+
+.link:hover{
+  color: #607d8b;
+}
+
+.linkFocus{
+  border-bottom: 2px solid #607d8b;
+  color: #607d8b;
+}

@@ -1,0 +1,32 @@
+<div class="container" style="height:620px">
+  <div class="content">
+    <p class="opacity">Add new quote</p>
+
+    <form class="white" (ngSubmit)="addQuote($event)">
+      <div class="section">
+        <label>Category</label>
+        <select name="category">
+          <option value="select">Select</option>
+          <option value="select">Select</option>
+          <option value="select">Select</option>
+          <option value="select">Select</option>
+          <option value="select">Select</option>
+        </select>
+      </div>
+      <div class="section">
+        <label>Author</label>
+        <input class="input" style="width:100%;" type="text" name="Name" [(ngModel)]="author">
+      </div>
+      <div class="section">
+        <label>Quote text</label>
+        <textarea class="input" name="post" style="width:100%;" [(ngModel)]="text"></textarea>
+      </div>
+      <button
+        type="submit" class="btn"
+        [disabled]="author === '' || text === ''"
+      >Send</button>
+    </form>
+
+  </div>
+</div>
+
