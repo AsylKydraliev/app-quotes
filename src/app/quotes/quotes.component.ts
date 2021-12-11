@@ -11,8 +11,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class QuotesComponent implements OnInit {
   quotes: Quote[] | null = null;
-  quote!: Quote;
-  quoteId!: string;
   category!: string;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
