@@ -21,7 +21,7 @@ export class AddQuotesComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       if(params['id']){
         this.quoteId  = params['id'];
-        this.http.get<Quote>(`https://app-blog-f76a2-default-rtdb.firebaseio.com/posts/${this.quoteId}.json`)
+        this.http.get<Quote>(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`)
           .subscribe(result => {
             this.quote = result;
             this.text = this.quote.text;

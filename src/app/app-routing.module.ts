@@ -10,6 +10,7 @@ const routes: Routes = [
       {path: 'quotes/:category', component: QuotesComponent},
     ]},
   {path: ':id/edit', component: AddQuotesComponent},
+  {path: 'quotes/:category/:id/edit', component: AddQuotesComponent},
   {path: 'add-quotes', component: AddQuotesComponent},
 ];
 
