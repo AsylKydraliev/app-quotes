@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Quote } from '../shared/quotes.model';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quotes',
@@ -9,36 +10,61 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./quotes.component.css']
 })
 export class QuotesComponent implements OnInit {
-  quote: Quote | null = null;
   quotes!: Quote[];
+  quote!: Quote;
+  quoteId!: string;
+  category!: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.getQuotes();
-  }
-
-  getQuotes() {
-    this.http.get<{[id: string]: Quote}>('https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json')
+  ngOnInit() {
+    this.http.get<{[id: string]: Quote}>
+    ('https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json')
       .pipe(map(result => {
         if(result === null) {
           return [];
         }
         return Object.keys(result).map(id => {
           const quote = result[id];
-          return new Quote(id, quote.category, quote.author, quote.text);
+          return new Quote(id, quote.category, quote.text, quote.author);
         });
       }))
       .subscribe(quotes =>{
+        this.quotes = [];
         this.quotes = quotes;
       });
+
+    this.route.params.subscribe((params: Params) => {
+      if (params['category']){this.category  = params['category']
+        this.http.get<{[id: string]: Quote}>
+        (`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json?orderBy="category"&equalTo="${this.category}"`)
+          .pipe(map(result => {
+            if(result === null) {
+              return [];
+            }
+            return Object.keys(result).map(id => {
+              const quote = result[id];
+              return new Quote(id, quote.category, quote.text, quote.author);
+            });
+          }))
+          .subscribe(quotes =>{
+            this.quotes = [];
+            this.quotes = quotes;
+
+          });
+      }
+    });
   }
 
-  getQuote(){
-    this.http.get<Quote>
-    (`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json?orderBy="category"&equalTo="star-wars"`)
-      .subscribe(quote =>{
-        this.quote = quote;
-      });
+
+
+onDelete() {
+    this.route.params.subscribe((params: Params) => {
+      if (params['id']){this.quoteId  = params['id'];
+        this.http.delete(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`)
+          .subscribe();
+      }
+    });
+    void this.router.navigate(['/']);
   }
 }

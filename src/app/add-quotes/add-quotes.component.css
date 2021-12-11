@@ -35,6 +35,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+select{
+  margin: 20px 0;
+}
+
 .btn{
   color: #fff;
   background-color: #009688;

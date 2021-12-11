@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Quote } from '../shared/quotes.model';
 
 @Component({
@@ -10,12 +10,13 @@ import { Quote } from '../shared/quotes.model';
 })
 export class AddQuotesComponent implements OnInit {
   quote!: Quote;
+  @Input() quotes!: Quote[];
   category = '';
   author = '';
   text = '';
   quoteId!: string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -44,6 +45,7 @@ export class AddQuotesComponent implements OnInit {
     } else {
       this.http.post('https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes.json', bodyQuote).subscribe();
     }
+    void this.router.navigate(['/']);
   }
 
   onEditQuote() {
@@ -53,5 +55,6 @@ export class AddQuotesComponent implements OnInit {
     const bodyQuote = {category, author, text};
     this.http.put(`https://app-blog-f76a2-default-rtdb.firebaseio.com/quotes/${this.quoteId}.json`, bodyQuote)
       .subscribe();
+    void this.router.navigate(['/']);
   }
 }

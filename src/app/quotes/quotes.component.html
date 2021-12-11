@@ -1,13 +1,11 @@
 <div class="container">
-  <div class="sidebar">
-    <ul>
-      <li>
-        <a (click)="getQuotes()">All</a>
-      </li>
-      <li *ngFor="let quote of quotes">
-        <a [routerLink]="['quotes', quote.id]">{{ quote.category }}</a>
-      </li>
-    </ul>
+  <div class="quotes" >
+    <div class="content" *ngFor="let quote of quotes">
+      <p>{{ quote.text }}</p>
+      <p>{{ quote.author }}</p>
+      <button type="submit" [routerLink]="[quoteId, 'edit']">Edit</button>
+      <button (click)="onDelete()">Delete</button>
+    </div>
   </div>
-  <router-outlet></router-outlet>
 </div>
+

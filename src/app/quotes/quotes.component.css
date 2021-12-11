@@ -2,7 +2,10 @@
   display: flex;
 }
 
-.sidebar{
-  width: 30%;
+.content{
+  width: 70%;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 10px 0;
 }
 

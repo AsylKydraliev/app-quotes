@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QuotesComponent } from './quotes/quotes.component';
 import { AddQuotesComponent } from './add-quotes/add-quotes.component';
-import { QuotesDetailsComponent } from './quotes/quotes-details/quotes-details.component';
+import { LinksComponent } from './links/links.component';
 
 const routes: Routes = [
-  {path: '', component: QuotesComponent, children: [
-      {path: 'quotes-details', component: QuotesDetailsComponent}
+  {path: '', component: LinksComponent, children: [
+      {path: '', component: QuotesComponent},
+      {path: ':quotes/:category', component: QuotesComponent},
     ]},
+  {path: ':id/edit', component: AddQuotesComponent},
   {path: 'add-quotes', component: AddQuotesComponent},
 ];
 
